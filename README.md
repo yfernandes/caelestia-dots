@@ -114,6 +114,38 @@ with the absolute path of `~/.local/lib/caelestia` (this must be the absolute pa
 
 Finally, install the CaelestiaFox extension from [here](https://addons.mozilla.org/en-US/firefox/addon/caelestiafox).
 
+### Standalone Chromium web apps
+
+The root-level `webapp-install` helper creates normal XDG desktop launchers in
+`~/.local/share/applications`. These launchers appear in Caelestia's app launcher without adding
+Hyprland keybinds for each app.
+
+```sh
+./webapp-install "ChatGPT" "https://chatgpt.com" "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128"
+./webapp-install "YouTube" "https://youtube.com" "/path/to/youtube.png"
+./webapp-install "Local Dashboard" "dashboard.local" "chromium" "webapp-launch https://dashboard.local --ignore-certificate-errors"
+```
+
+The generated entries call `webapp-launch`, which prefers the XDG default browser when it is a
+Chromium-family browser. If the default browser is Firefox, Zen, or cannot be resolved, it falls
+back to `chromium`. Extra arguments after the URL are preserved and passed to the browser.
+
+Remove launchers with:
+
+```sh
+./webapp-remove "ChatGPT"
+./webapp-remove-all
+```
+
+From the Caelestia launcher, type `>webapp` and select **Web App**. The inline install flow accepts
+pipe-separated fields:
+
+```text
+>webapp ChatGPT | chatgpt.com
+>webapp YouTube | https://youtube.com | /path/to/youtube.png
+>webapp Local Dashboard | dashboard.local | chromium | webapp-launch https://dashboard.local --ignore-certificate-errors
+```
+
 ## Updating
 
 Simply run `yay` to update the AUR packages, then `cd` into the repo directory and run `git pull` to update the configs.
