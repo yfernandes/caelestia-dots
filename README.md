@@ -116,14 +116,14 @@ Finally, install the CaelestiaFox extension from [here](https://addons.mozilla.o
 
 ### Standalone Chromium web apps
 
-The root-level `webapp-install` helper creates normal XDG desktop launchers in
+The `shell/assets/webapp-install` helper creates normal XDG desktop launchers in
 `~/.local/share/applications`. These launchers appear in Caelestia's app launcher without adding
 Hyprland keybinds for each app.
 
 ```sh
-./webapp-install "ChatGPT" "https://chatgpt.com" "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128"
-./webapp-install "YouTube" "https://youtube.com" "/path/to/youtube.png"
-./webapp-install "Local Dashboard" "dashboard.local" "chromium" "webapp-launch https://dashboard.local --ignore-certificate-errors"
+./shell/assets/webapp-install "ChatGPT" "https://chatgpt.com" "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128"
+./shell/assets/webapp-install "YouTube" "https://youtube.com" "/path/to/youtube.png"
+./shell/assets/webapp-install "Local Dashboard" "dashboard.local" "chromium" "webapp-launch https://dashboard.local --ignore-certificate-errors"
 ```
 
 The generated entries call `webapp-launch`, which prefers the XDG default browser when it is a
@@ -133,8 +133,8 @@ back to `chromium`. Extra arguments after the URL are preserved and passed to th
 Remove launchers with:
 
 ```sh
-./webapp-remove "ChatGPT"
-./webapp-remove-all
+./shell/assets/webapp-remove "ChatGPT"
+./shell/assets/webapp-remove-all
 ```
 
 From the Caelestia launcher, type `>webapp` and select **Web App**. The inline install flow accepts
